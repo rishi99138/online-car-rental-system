@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Car Rental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        
+        /* Typography */
+        h1, h2, .logo { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: 3px; }
+        
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 30px 50px; border-bottom: 1px solid #333; }
+        .logo { font-size: 24px; font-weight: bold; border: 2px solid #fff; padding: 10px 20px; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 40px; font-size: 14px; opacity: 0.8; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; border-bottom: 1px solid #fff; }
+
+        /* Hero Section */
+        .hero { padding: 80px 50px; text-align: center; border-bottom: 1px solid #333; }
+        .hero h1 { font-size: 60px; margin-bottom: 20px; }
+        
+        /* CAR GRID (The Important Part) */
+        .container { padding: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        
+        .card { border: 1px solid #333; padding: 20px; background: #050505; transition: 0.3s; }
+        .card:hover { border-color: #fff; transform: translateY(-5px); }
+        
+        .car-img-box { 
+            height: 200px; 
+            width: 100%; 
+            overflow: hidden; 
+            margin-bottom: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: #111;
+        }
+        
+        /* This ensures images fit perfectly */
+        .car-img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .car-name { font-family: 'Syncopate'; font-size: 18px; margin-bottom: 10px; }
+        .car-details { color: #888; font-size: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; }
+        .price { font-size: 20px; font-weight: bold; color: #fff; }
+        
+        .btn-book { 
+            display: block; 
+            width: 100%; 
+            padding: 15px; 
+            text-align: center;
+            border: 1px solid #fff; 
+            background: transparent; 
+            color: #fff; 
+            font-family: 'Syncopate'; 
+            font-size: 12px; 
+            text-decoration: none; 
+            margin-top: 15px; 
+            transition: 0.3s;
+        }
+        .btn-book:hover { background: #fff; color: #000; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">LUXE DRIVE</div>
+    <div class="nav-links">
+        <a href="/">Fleet</a>
+        
+        {% if user_name %}
+            <span style="color: #888; margin-left: 20px; font-size: 12px; text-transform: uppercase;">
+                HI, {{ user_name }}
+            </span>
+            <a href="/logout" style="color: #ff4444;">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+        {% endif %}
+    </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Available Fleet</h1>
+        <p>Select your vehicle for the journey.</p>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            {% for car in cars %}
+            <div class="card">
+                <div class="car-img-box">
+                    <img src="{{ url_for('static', filename='images/' + car.image_url) }}" alt="{{ car.model_name }}">
+                </div>
+                <div class="car-name">{{ car.brand }} {{ car.model_name }}</div>
+                <div class="car-details">
+                    <span>{{ car.category }}</span>
+                    <span>Available</span>
+                </div>
+                <div class="price">${{ car.price_per_day }} / DAY</div>
+                <a href="/book/{{ car.car_id }}" class="btn-book">BOOK NOW</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

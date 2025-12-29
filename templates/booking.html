@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Vehicle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { display: flex; border: 1px solid #333; width: 800px; background: #050505; }
+        
+        /* Left: Car Image */
+        .car-preview { flex: 1; border-right: 1px solid #333; padding: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .car-preview img { width: 100%; max-width: 300px; }
+        .car-title { font-family: 'Syncopate'; font-size: 24px; margin-top: 20px; text-align: center; }
+        .price-tag { color: #888; margin-top: 10px; font-size: 14px; }
+
+        /* Right: Form */
+        .booking-form { flex: 1; padding: 40px; }
+        h2 { font-family: 'Syncopate'; margin-bottom: 30px; font-size: 18px; }
+        
+        label { display: block; color: #666; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; }
+        input { width: 100%; padding: 15px; background: #111; border: 1px solid #333; color: #fff; margin-bottom: 20px; font-family: 'Montserrat'; }
+        
+        .btn { width: 100%; padding: 20px; background: #fff; color: #000; font-family: 'Syncopate'; font-weight: bold; border: none; cursor: pointer; }
+        .btn:hover { background: #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="car-preview">
+            <img src="{{ url_for('static', filename='images/' + car.image_url) }}" alt="Car">
+            <div class="car-title">{{ car.brand }} {{ car.model_name }}</div>
+            <div class="price-tag">${{ car.price_per_day }} / DAY</div>
+        </div>
+        
+        <div class="booking-form">
+            <h2>Select Dates</h2>
+            <form action="/book/{{ car.car_id }}" method="POST">
+                <label>Pick-Up Date</label>
+                <input type="date" name="start_date" required>
+                
+                <label>Return Date</label>
+                <input type="date" name="end_date" required>
+                
+                <button type="submit" class="btn">CONFIRM RESERVATION</button>
+            </form>
+            <div style="margin-top: 20px; font-size: 12px; color: #555; text-align: center;">
+                <a href="/" style="color: #555;">Cancel</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; padding: 50px; }
+        
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 20px; margin-bottom: 40px; }
+        h1 { font-family: 'Syncopate'; font-size: 24px; }
+        .logout { color: #666; text-decoration: none; font-size: 12px; }
+
+        /* Table Style */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { text-align: left; border-bottom: 1px solid #fff; padding: 15px; font-family: 'Syncopate'; font-size: 10px; color: #888; }
+        td { padding: 15px; border-bottom: 1px solid #333; font-size: 14px; }
+        
+        .status-badge { padding: 5px 10px; border: 1px solid #fff; font-size: 10px; text-transform: uppercase; }
+        
+        .btn-return { 
+            background: #fff; color: #000; border: none; padding: 8px 15px; 
+            font-family: 'Syncopate'; font-size: 10px; cursor: pointer; text-decoration: none; 
+        }
+        .btn-return:hover { background: #ccc; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Control Center</h1>
+        <div>
+            <span style="margin-right: 20px; color: #888;">Logged in as Admin</span>
+            <a href="/logout" class="logout">LOGOUT</a>
+        </div>
+    </header>
+
+    <h2 style="font-family: 'Syncopate'; font-size: 16px; margin-bottom: 20px;">Active Bookings</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Car Model</th>
+                <th>Dates</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>#{{ booking.booking_id }}</td>
+                <td>{{ booking.full_name }}</td>
+                <td>{{ booking.brand }} {{ booking.model_name }}</td>
+                <td>{{ booking.start_date }} to {{ booking.end_date }}</td>
+                <td>${{ booking.total_amount }}</td>
+                <td>
+                    <a href="/return/{{ booking.booking_id }}/{{ booking.car_id }}" class="btn-return">MARK RETURNED</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

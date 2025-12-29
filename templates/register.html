@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Car Rental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { height: 100vh; display: flex; font-family: 'Montserrat', sans-serif; background: #000; color: #fff; justify-content: center; align-items: center; }
+        
+        .box { width: 400px; padding: 40px; border: 1px solid #333; background: #050505; }
+        h2 { font-family: 'Syncopate'; margin-bottom: 30px; text-align: center; font-size: 20px; }
+        
+        input { width: 100%; padding: 15px; margin-bottom: 20px; background: #111; border: 1px solid #333; color: #fff; font-family: 'Montserrat'; outline: none; }
+        input:focus { border-color: #fff; }
+        
+        .btn { width: 100%; padding: 15px; background: #fff; color: #000; font-family: 'Syncopate'; font-weight: bold; border: none; cursor: pointer; }
+        .btn:hover { background: #ddd; }
+        
+        .link { display: block; text-align: center; margin-top: 20px; color: #666; font-size: 12px; text-decoration: none; }
+        .link:hover { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Join the Club</h2>
+        <form action="/register" method="POST">
+            <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Create Password" required>
+            <input type="text" name="license_no" placeholder="Driving License No" required>
+            <button type="submit" class="btn">REGISTER</button>
+        </form>
+        <a href="/login" class="link">Already a member? Login</a>
+    </div>
+</body>
+</html>
