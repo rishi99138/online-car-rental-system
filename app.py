@@ -172,6 +172,5 @@ def return_car(booking_id, car_id):
     
     return redirect('/admin')
 
-# --- RUN SERVER ---
-if __name__ == '__main__':
-    app.run(debug=True)
+# Vercel requires the 'app' object to be available directly
+app = app
