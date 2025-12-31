@@ -8,15 +8,14 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Main Container */
         body { 
-            min-height: 100vh; /* Allow scrolling if needed */
+            min-height: 100vh; 
             display: flex; 
             font-family: 'Montserrat', sans-serif; 
             background: #000; 
         }
 
-        /* The Image/Text Section */
+        /* --- DESKTOP STYLES --- */
         .left-panel { 
             flex: 1; 
             background: #111; 
@@ -26,16 +25,9 @@
             padding: 60px; 
             border-right: 1px solid #333; 
         }
-        .left-panel h1 { 
-            font-family: 'Syncopate', sans-serif; 
-            color: #fff; 
-            font-size: 50px; /* Big on Desktop */
-            line-height: 1.2; 
-            margin-bottom: 20px; 
-        }
+        .left-panel h1 { font-family: 'Syncopate', sans-serif; color: #fff; font-size: 50px; line-height: 1.2; margin-bottom: 20px; }
         .left-panel p { color: #666; font-size: 14px; max-width: 400px; }
 
-        /* The Form Section */
         .right-panel { 
             flex: 1; 
             display: flex; 
@@ -44,49 +36,63 @@
             background: #000; 
             padding: 20px;
         }
-        .login-box { width: 100%; max-width: 400px; padding: 40px; border: 1px solid #333; }
         
-        h2 { color: #fff; font-family: 'Syncopate', sans-serif; margin-bottom: 40px; font-size: 24px; text-align: center; }
+        .register-box { width: 100%; max-width: 500px; padding: 40px; border: 1px solid #333; }
         
-        .input-group { margin-bottom: 30px; }
+        h2 { color: #fff; font-family: 'Syncopate', sans-serif; margin-bottom: 30px; font-size: 24px; text-align: center; }
+        
+        /* This handles the 2-column input layout on Desktop */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns side by side */
+            gap: 20px;
+        }
+        
+        .input-group { margin-bottom: 20px; }
         .input-group label { display: block; color: #888; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
         .input-group input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #fff; padding: 10px 0; color: #fff; outline: none; font-family: 'Montserrat'; font-size: 16px; }
         
-        .btn { width: 100%; padding: 20px; background: #fff; color: #000; font-family: 'Syncopate'; font-weight: bold; border: none; cursor: pointer; margin-top: 10px; }
-        .footer-text { margin-top: 20px; text-align: center; color: #555; font-size: 12px; }
+        .btn { width: 100%; padding: 20px; background: #fff; color: #000; font-family: 'Syncopate'; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; }
+        
+        .footer-text { margin-top: 20px; text-align: center; color: #888; font-size: 14px; }
+        .footer-text a { color: #fff; text-decoration: underline; }
 
-        /* --- MOBILE TRANSFORMATION --- */
+        /* --- MOBILE FIXES --- */
         @media (max-width: 768px) {
-            body { 
-                flex-direction: column; /* Stack them: Text on TOP, Form on BOTTOM */
-            }
+            body { flex-direction: column; }
 
             .left-panel { 
-                flex: none; /* Don't stretch */
+                flex: none; 
                 width: 100%;
-                padding: 30px 20px; /* Shrink padding significantly */
+                padding: 30px 20px;
                 border-right: none;
                 border-bottom: 1px solid #333;
-                align-items: center; /* Center the text */
                 text-align: center;
+                align-items: center;
             }
-
-            .left-panel h1 { 
-                font-size: 24px; /* Make the text much smaller */
-                margin-bottom: 5px;
-            }
-            
-            .left-panel p { 
-                display: none; /* Optional: Hide the small paragraph on mobile to save space */
-            }
+            .left-panel h1 { font-size: 24px; margin-bottom: 5px; }
+            .left-panel p { display: none; }
 
             .right-panel { 
                 flex: 1; 
-                padding-top: 40px; /* Add space between header and form */
-                align-items: flex-start; /* Align form to top */
+                padding: 30px 20px; /* Add padding so header doesn't get cut */
+                align-items: flex-start;
             }
 
-            .login-box { border: none; padding: 0; }
+            .register-box { 
+                border: none; 
+                padding: 0; 
+                width: 100%;
+            }
+            
+            /* CRITICAL FIX: Make inputs stack vertically on mobile */
+            .form-grid {
+                grid-template-columns: 1fr; /* Force 1 column */
+                gap: 10px;
+            }
+
+            input { padding: 15px 0; font-size: 18px; }
+            .btn { padding: 20px; font-size: 16px; }
         }
     </style>
 </head>
