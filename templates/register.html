@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Car Rental</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -19,6 +20,24 @@
         
         .link { display: block; text-align: center; margin-top: 20px; color: #666; font-size: 12px; text-decoration: none; }
         .link:hover { color: #fff; }
+
+        /* MOBILE INPUT FIXES */
+        @media (max-width: 768px) {
+            .box, .login-box { 
+                width: 90%; /* Use full width of phone */
+                padding: 20px; 
+            }
+            .left-panel { display: none; } /* Hide the big image on login page for mobile */
+            input { 
+                padding: 20px; /* Fat inputs for thumbs */
+                font-size: 16px; /* Prevents iPhone zooming */
+                margin-bottom: 25px;
+            }
+            .btn { 
+                padding: 20px; 
+                font-size: 18px; 
+            }
+        }
     </style>
 </head>
 <body>
