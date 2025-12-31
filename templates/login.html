@@ -7,16 +7,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { height: 100vh; display: flex; font-family: 'Montserrat', sans-serif; background: #000; }
+        
+        /* Main Container */
+        body { 
+            min-height: 100vh; /* Allow scrolling if needed */
+            display: flex; 
+            font-family: 'Montserrat', sans-serif; 
+            background: #000; 
+        }
 
-        /* Left Side */
-        .left-panel { flex: 1; background: #111; display: flex; flex-direction: column; justify-content: center; padding: 60px; border-right: 1px solid #333; }
-        .left-panel h1 { font-family: 'Syncopate', sans-serif; color: #fff; font-size: 60px; line-height: 1.2; margin-bottom: 20px; }
+        /* The Image/Text Section */
+        .left-panel { 
+            flex: 1; 
+            background: #111; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 60px; 
+            border-right: 1px solid #333; 
+        }
+        .left-panel h1 { 
+            font-family: 'Syncopate', sans-serif; 
+            color: #fff; 
+            font-size: 50px; /* Big on Desktop */
+            line-height: 1.2; 
+            margin-bottom: 20px; 
+        }
         .left-panel p { color: #666; font-size: 14px; max-width: 400px; }
 
-        /* Right Side (Form) */
-        .right-panel { flex: 1; display: flex; align-items: center; justify-content: center; background: #000; }
-        .login-box { width: 400px; padding: 40px; border: 1px solid #333; }
+        /* The Form Section */
+        .right-panel { 
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: #000; 
+            padding: 20px;
+        }
+        .login-box { width: 100%; max-width: 400px; padding: 40px; border: 1px solid #333; }
         
         h2 { color: #fff; font-family: 'Syncopate', sans-serif; margin-bottom: 40px; font-size: 24px; text-align: center; }
         
@@ -26,6 +54,40 @@
         
         .btn { width: 100%; padding: 20px; background: #fff; color: #000; font-family: 'Syncopate'; font-weight: bold; border: none; cursor: pointer; margin-top: 10px; }
         .footer-text { margin-top: 20px; text-align: center; color: #555; font-size: 12px; }
+
+        /* --- MOBILE TRANSFORMATION --- */
+        @media (max-width: 768px) {
+            body { 
+                flex-direction: column; /* Stack them: Text on TOP, Form on BOTTOM */
+            }
+
+            .left-panel { 
+                flex: none; /* Don't stretch */
+                width: 100%;
+                padding: 30px 20px; /* Shrink padding significantly */
+                border-right: none;
+                border-bottom: 1px solid #333;
+                align-items: center; /* Center the text */
+                text-align: center;
+            }
+
+            .left-panel h1 { 
+                font-size: 24px; /* Make the text much smaller */
+                margin-bottom: 5px;
+            }
+            
+            .left-panel p { 
+                display: none; /* Optional: Hide the small paragraph on mobile to save space */
+            }
+
+            .right-panel { 
+                flex: 1; 
+                padding-top: 40px; /* Add space between header and form */
+                align-items: flex-start; /* Align form to top */
+            }
+
+            .login-box { border: none; padding: 0; }
+        }
     </style>
 </head>
 <body>
