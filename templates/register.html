@@ -6,164 +6,134 @@
     <title>Register - Car Rental</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* RESET & BASE STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             min-height: 100vh; 
-            display: flex; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-family: 'Montserrat', sans-serif; 
-            background-color: #000; /* Force Black Background */
+            background-color: #000;
             color: #fff;
-        }
-
-        /* --- DESKTOP LAYOUT --- */
-        .left-panel { 
-            flex: 1; 
-            background: #111; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            padding: 60px; 
-            border-right: 1px solid #333; 
-        }
-        .left-panel h1 { font-family: 'Syncopate', sans-serif; font-size: 50px; line-height: 1.2; margin-bottom: 20px; }
-        .left-panel p { color: #666; font-size: 14px; max-width: 400px; }
-
-        .right-panel { 
-            flex: 1; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            background: #000; 
             padding: 20px;
         }
-        
-        /* THE CONTAINER */
-        .register-box { 
-            width: 100%; 
-            max-width: 500px; 
-            padding: 40px; 
-            border: 1px solid #333; /* Subtle border for desktop */
+
+        .box {
+            width: 100%;
+            max-width: 500px;
+            padding: 60px 40px;
+            border: 1px solid #333;
+            background: #000;
         }
 
-        /* HEADER TEXT */
+        .tagline {
+            color: #fff;
+            font-size: 30px;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
         h2 { 
             color: #fff; 
             font-family: 'Syncopate', sans-serif; 
-            margin-bottom: 40px; 
-            font-size: 24px; 
+            margin-bottom: 50px; 
+            font-size: 20px; 
             text-align: center; 
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            font-weight: 700;
         }
 
-        /* INPUT FIELDS - THE "SLEEK" LOOK */
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr; 
-            gap: 30px; /* More space between inputs */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
-        
-        .input-group { margin-bottom: 10px; }
-        
-        /* THIS IS THE CRITICAL PART FOR THE DESIGN */
-        .input-group input { 
+
+        input {
             width: 100%; 
-            background: transparent !important; /* No white background */
-            border: none !important;
-            border-bottom: 1px solid #444 !important; /* Grey line initially */
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
             padding: 15px 0; 
-            color: #fff !important; 
+            color: #fff; 
             outline: none; 
             font-family: 'Montserrat'; 
-            font-size: 16px; 
-            border-radius: 0 !important; /* Sharp edges */
-            -webkit-appearance: none; /* Remove iPhone default styling */
-        }
-        
-        /* Placeholder Text Color */
-        .input-group input::placeholder { 
-            color: #666; 
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 16px;
+            transition: border-color 0.3s;
         }
 
-        /* When you click the input */
-        .input-group input:focus { 
-            border-bottom: 1px solid #fff !important; /* Line turns white */
+        input::placeholder { 
+            color: #666; 
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        
-        /* BUTTON */
+
+        input:focus { 
+            border-bottom-color: #fff;
+        }
+
         .btn { 
             width: 100%; 
-            padding: 20px; 
+            padding: 18px; 
             background: #fff; 
             color: #000; 
             font-family: 'Syncopate'; 
-            font-weight: bold; 
+            font-weight: 700; 
             border: none; 
             cursor: pointer; 
-            margin-top: 40px; 
+            margin-top: 20px; 
             text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
+            letter-spacing: 3px;
+            font-size: 13px;
+            transition: opacity 0.3s;
         }
-        .btn:hover { opacity: 0.9; }
         
-        .footer-text { margin-top: 30px; text-align: center; color: #666; font-size: 12px; }
-        .footer-text a { color: #fff; text-decoration: none; border-bottom: 1px solid #333; }
+        .btn:hover { 
+            opacity: 0.85; 
+        }
 
-        /* --- MOBILE FIXES --- */
+        .link {
+            display: block;
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .link:hover {
+            color: #fff;
+        }
+
         @media (max-width: 768px) {
-            body { flex-direction: column; }
-
-            /* Top Header Section */
-            .left-panel { 
-                flex: none; 
-                width: 100%;
-                padding: 40px 20px 20px 20px; 
-                border-right: none;
-                border-bottom: 1px solid #222;
-                text-align: center;
-                background: #000;
-            }
-            .left-panel h1 { font-size: 24px; margin-bottom: 5px; }
-            .left-panel p { display: none; }
-
-            /* Form Section */
-            .right-panel { 
-                flex: 1; 
-                padding: 20px; 
-                align-items: flex-start; 
+            .box {
+                padding: 40px 30px;
+                border: none;
             }
 
-            .register-box { 
-                border: none; 
-                padding: 0; 
-                width: 100%;
-            }
-            
-            /* Stack inputs vertically on mobile */
-            .form-grid {
-                grid-template-columns: 1fr; 
-                gap: 10px;
+            h2 {
+                font-size: 24px;
+                margin-bottom: 40px;
             }
 
-            /* Make inputs big and touch-friendly */
-            .input-group input { 
-                padding: 15px 0; 
-                font-size: 16px; 
+            form {
+                gap: 30px;
             }
-            
-            h2 { font-size: 20px; margin-bottom: 30px; margin-top: 10px; }
         }
     </style>
 </head>
 <body>
     <div class="box">
-        <h2>Join the Club</h2>
+        <div class="tagline">JOIN THE CLUB</div>
+        <h2>SIGN UP</h2>
         <form action="/register" method="POST">
             <input type="text" name="full_name" placeholder="Full Name" required>
             <input type="email" name="email" placeholder="Email Address" required>
@@ -171,7 +141,7 @@
             <input type="text" name="license_no" placeholder="Driving License No" required>
             <button type="submit" class="btn">REGISTER</button>
         </form>
-        <a href="/login" class="link">Already a member? Login</a>
+        <a href="/login" class="link">Already a member? Sign in</a>
     </div>
 </body>
 </html>
