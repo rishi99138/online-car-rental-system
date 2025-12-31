@@ -13,9 +13,10 @@
             display: flex; 
             font-family: 'Montserrat', sans-serif; 
             background: #000; 
+            color: #fff;
         }
 
-        /* --- DESKTOP STYLES --- */
+        /* --- DESKTOP LAYOUT --- */
         .left-panel { 
             flex: 1; 
             background: #111; 
@@ -25,7 +26,7 @@
             padding: 60px; 
             border-right: 1px solid #333; 
         }
-        .left-panel h1 { font-family: 'Syncopate', sans-serif; color: #fff; font-size: 50px; line-height: 1.2; margin-bottom: 20px; }
+        .left-panel h1 { font-family: 'Syncopate', sans-serif; font-size: 50px; line-height: 1.2; margin-bottom: 20px; }
         .left-panel p { color: #666; font-size: 14px; max-width: 400px; }
 
         .right-panel { 
@@ -39,44 +40,78 @@
         
         .register-box { width: 100%; max-width: 500px; padding: 40px; border: 1px solid #333; }
         
-        h2 { color: #fff; font-family: 'Syncopate', sans-serif; margin-bottom: 30px; font-size: 24px; text-align: center; }
-        
-        /* This handles the 2-column input layout on Desktop */
+        h2 { 
+            color: #fff; 
+            font-family: 'Syncopate', sans-serif; 
+            margin-bottom: 30px; 
+            font-size: 24px; 
+            text-align: center; 
+        }
+
+        /* FORM STYLING (Dark Mode) */
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns side by side */
+            grid-template-columns: 1fr 1fr; 
             gap: 20px;
         }
         
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; color: #888; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        .input-group input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #fff; padding: 10px 0; color: #fff; outline: none; font-family: 'Montserrat'; font-size: 16px; }
+        .input-group { margin-bottom: 10px; }
         
-        .btn { width: 100%; padding: 20px; background: #fff; color: #000; font-family: 'Syncopate'; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; }
+        /* The sleek input style */
+        .input-group input { 
+            width: 100%; 
+            background: transparent !important;  /* No more white blocks */
+            border: none; 
+            border-bottom: 1px solid #555; 
+            padding: 15px 0; 
+            color: #fff !important; /* White text */
+            outline: none; 
+            font-family: 'Montserrat'; 
+            font-size: 16px; 
+            border-radius: 0; /* Removes default phone roundness */
+        }
         
-        .footer-text { margin-top: 20px; text-align: center; color: #888; font-size: 14px; }
-        .footer-text a { color: #fff; text-decoration: underline; }
+        .input-group input::placeholder { color: #555; }
+        .input-group input:focus { border-bottom: 1px solid #fff; }
+        
+        .btn { 
+            width: 100%; 
+            padding: 20px; 
+            background: #fff; 
+            color: #000; 
+            font-family: 'Syncopate'; 
+            font-weight: bold; 
+            border: none; 
+            cursor: pointer; 
+            margin-top: 30px; 
+            text-transform: uppercase;
+        }
+        
+        .footer-text { margin-top: 20px; text-align: center; color: #666; font-size: 12px; }
+        .footer-text a { color: #fff; text-decoration: underline; } /* Fixed the blue link issue */
 
         /* --- MOBILE FIXES --- */
         @media (max-width: 768px) {
             body { flex-direction: column; }
 
+            /* Header Section */
             .left-panel { 
                 flex: none; 
                 width: 100%;
-                padding: 30px 20px;
+                padding: 40px 20px 20px 20px; /* Extra top padding */
                 border-right: none;
                 border-bottom: 1px solid #333;
                 text-align: center;
-                align-items: center;
+                background: #000;
             }
             .left-panel h1 { font-size: 24px; margin-bottom: 5px; }
             .left-panel p { display: none; }
 
+            /* Form Section */
             .right-panel { 
                 flex: 1; 
-                padding: 30px 20px; /* Add padding so header doesn't get cut */
-                align-items: flex-start;
+                padding: 20px; 
+                align-items: flex-start; /* Aligns form to top */
             }
 
             .register-box { 
@@ -85,14 +120,13 @@
                 width: 100%;
             }
             
-            /* CRITICAL FIX: Make inputs stack vertically on mobile */
+            /* Stack inputs vertically */
             .form-grid {
-                grid-template-columns: 1fr; /* Force 1 column */
+                grid-template-columns: 1fr; 
                 gap: 10px;
             }
-
-            input { padding: 15px 0; font-size: 18px; }
-            .btn { padding: 20px; font-size: 16px; }
+            
+            h2 { font-size: 20px; margin-bottom: 20px; margin-top: 10px; }
         }
     </style>
 </head>
